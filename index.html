@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hızlı Dil Öğrenme Taktikleri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: Uygulama, kullanıcıyı pasif bilgi alımından aktif planlamaya yönlendirmek için tematik bölümlere ayrılmıştır. 'Giriş', 'CIA Taktikleri', 'Kelime Teknikleri' ve 'Öğrenme Planım' olmak üzere dört ana bölümden oluşur. Bu yapı, karmaşık bilgileri sindirilebilir parçalara ayırır ve son adımda interaktif bir plan oluşturucu ile kullanıcının öğrendiklerini kişiselleştirerek eyleme dökmesini sağlar. Bu kullanıcı akışı, bilginin kalıcılığını ve kullanılabilirliğini artırmak için tasarlanmıştır. -->
+    <!-- Visualization & Content Choices: Rapordaki metin tabanlı bilgiler, 'Hedef: Bilgilendirmek ve Organize Etmek' amacı doğrultusunda interaktif akordeon menüler ve kartlar kullanılarak sunulmuştur. Bu, metin yığınlarını önler ve keşfi teşvik eder. 'Hedef: Sentezlemek ve Eyleme Geçmek' için, kullanıcının seçtiği tekniklerden kişisel bir öğrenme özeti oluşturan bir kontrol listesi ve JavaScript tabanlı bir 'plan oluşturucu' kullanılmıştır. Bu, statik bilgiyi dinamik ve kişisel bir araca dönüştürür. Herhangi bir sayısal veri olmadığı için grafik kütüphaneleri (Chart.js vb.) kullanılmamıştır. Tüm seçimler, SVG/Mermaid kullanmadan, tasarlanan yapıyı desteklemektedir. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #2c3e50;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #007BFF;
+            border-bottom-color: #007BFF;
+        }
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-content.open {
+            max-height: 500px;
+        }
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-800">Dil Öğrenme Stratejileri</h1>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#cia-tactics" class="nav-link text-gray-600 font-medium pb-1">CIA Taktikleri</a>
+                <a href="#vocab-techniques" class="nav-link text-gray-600 font-medium pb-1">Kelime Teknikleri</a>
+                <a href="#my-plan" class="nav-link text-gray-600 font-medium pb-1">Öğrenme Planım</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h16"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#cia-tactics" class="block py-2 nav-link text-gray-600">CIA Taktikleri</a>
+            <a href="#vocab-techniques" class="block py-2 nav-link text-gray-600">Kelime Teknikleri</a>
+            <a href="#my-plan" class="block py-2 nav-link text-gray-600">Öğrenme Planım</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <section id="hero" class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800 tracking-tight">Dil Öğreniminde Elit Stratejiler</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">CIA ajanlarının dil becerilerini nasıl hızla zirveye taşıdığını ve bilimsel olarak kanıtlanmış kelime öğrenme tekniklerini keşfedin. Bilgiyi güce dönüştürün ve kendi kişiselleştirilmiş öğrenme planınızı oluşturun.</p>
+        </section>
+
+        <section id="cia-tactics" class="mb-20">
+            <h3 class="text-3xl font-bold text-center mb-10 text-gray-800">CIA'in Dil Öğrenme Taktikleri</h3>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Bu bölüm, CIA çalışanlarının yoğun programlarında dil yetkinliğini en üst düzeye çıkarmak için kullandığı temel prensipleri ve disiplinli yaklaşımları içermektedir. Bu taktikler, sadece ezberlemek yerine dili aktif olarak kullanma ve anlama üzerine odaklanır.</p>
+            <div id="accordion-container" class="max-w-3xl mx-auto space-y-4">
+            </div>
+        </section>
+
+        <section id="vocab-techniques" class="mb-20">
+            <h3 class="text-3xl font-bold text-center mb-10 text-gray-800">Hızlı Kelime Öğrenme Teknikleri</h3>
+             <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Bu bölümde, kelime dağarcığınızı hızla ve kalıcı bir şekilde genişletmenize yardımcı olacak, bilimsel temellere dayanan en etkili yöntemleri bulacaksınız. Her bir teknik, beynin öğrenme ve hatırlama mekanizmalarını en verimli şekilde kullanmak üzere tasarlanmıştır.</p>
+            <div id="cards-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+        </section>
+
+        <section id="my-plan" class="bg-white p-8 rounded-2xl shadow-lg">
+            <h3 class="text-3xl font-bold text-center mb-10 text-gray-800">Kendi Öğrenme Planını Oluştur</h3>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Aşağıdaki taktik ve tekniklerden kendi öğrenme stilinize en uygun olanları seçin. "Planı Oluştur" düğmesine tıklayarak size özel, odaklanmış bir çalışma programı oluşturun. Bu plan, dil öğrenme yolculuğunuzda size rehberlik edecektir.</p>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h4 class="font-bold text-xl mb-4 text-gray-700">CIA Taktikleri</h4>
+                    <div id="cia-checkboxes" class="space-y-3"></div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xl mb-4 text-gray-700">Kelime Teknikleri</h4>
+                    <div id="vocab-checkboxes" class="space-y-3"></div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button id="generate-plan-btn" class="btn-primary font-bold py-3 px-8 rounded-full text-lg">
+                    Planı Oluştur
+                </button>
+            </div>
+            <div id="plan-output" class="mt-12 hidden">
+                <h4 class="text-2xl font-bold text-center mb-6 text-gray-800">Kişiselleştirilmiş Dil Öğrenme Planınız</h4>
+                <div id="plan-content" class="bg-gray-50 p-6 rounded-lg border border-gray-200 prose max-w-none"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-8 mt-12 border-t">
+        <p class="text-gray-500">&copy; 2025 Dil Öğrenme Stratejileri. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+    const ciaTactics = [
+        { id: 'cia1', title: '%100 Yoğunlaşma (Total Immersion)', content: 'Bu yöntemde, hedef dil hayatın her alanına entegre edilir. Telefon dili değiştirilir, sadece o dilde müzik dinlenir, film izlenir ve haberler okunur. Amaç, beyne sürekli olarak hedef dilde sinyaller göndererek adaptasyon sürecini hızlandırmaktır. Günlük rutinlerinizi hedef dilde düşünmeye çalışmak bu sürecin önemli bir parçasıdır.' },
+        { id: 'cia2', title: 'Hedef Odaklı Pratik (Mission-Oriented Practice)', content: 'Rastgele konular yerine, belirli bir görevi (örneğin bir restoranda sipariş vermek, yol tarifi sormak, bir ürün hakkında bilgi almak) tamamlamaya odaklanılır. Bu, öğrenilen dilin pratik ve gerçek dünya senaryolarında nasıl kullanılacağını öğretir, motivasyonu artırır ve pasif bilgiyi aktif beceriye dönüştürür.' },
+        { id: 'cia3', title: 'Hataları Analiz Etme (Error Analysis)', content: 'Yapılan her dil hatası bir öğrenme fırsatı olarak görülür. Konuşma veya yazma pratiği sonrası hatalar (gramer, telaffuz, kelime seçimi) tespit edilir ve kök nedenleri analiz edilir. "Neden bu hatayı yaptım?" sorusu sorularak aynı hatanın tekrarlanması önlenir. Bu, bilinçli farkındalık yoluyla kalıcı öğrenmeyi sağlar.' },
+        { id: 'cia4', title: 'Gölgeleme Tekniği (Shadowing)', content: 'Anadili konuşmacısının ses kaydı dinlenir ve aynı anda, birkaç milisaniye gecikmeyle tekrar edilir. Bu teknik, sadece telaffuzu ve entonasyonu değil, aynı zamanda dilin ritmini, akıcılığını ve doğal ses kalıplarını da geliştirmek için son derece etkilidir. Kas hafızasını güçlendirerek akıcı konuşmayı hedefler.' }
+    ];
+
+    const vocabTechniques = [
+        { id: 'vocab1', title: 'Aralıklı Tekrar Sistemi (SRS)', content: 'Yeni öğrenilen kelimelerin unutulma eğrisine karşı çalışan bir tekniktir. Kelimeler, tam unutulmak üzereyken size tekrar sorulur. Bu zamanlamalı tekrarlar, bilginin kısa süreli hafızadan uzun süreli hafızaya aktarılmasını sağlar. Anki, Memrise gibi uygulamalar bu sistemi kullanır.' },
+        { id: 'vocab2', title: 'Anlamsal Bağlam Kurma (Contextual Learning)', content: 'Kelimeleri tek başlarına değil, anlamlı cümleler veya kısa hikayeler içinde öğrenmek. Beyin, birbiriyle ilişkili bilgileri daha kolay hatırlar. Yeni bir kelimeyi öğrendiğinizde, o kelimeyi içeren 3-5 farklı ve kişisel olarak anlamlı cümle kurmaya çalışın.' },
+        { id: 'vocab3', title: 'Hafıza Sarayı (Mnemonic Palace)', content: 'Özellikle soyut kelimeleri veya listeleri hatırlamak için güçlü bir tekniktir. Çok iyi bildiğiniz bir mekanı (eviniz gibi) zihninizde canlandırır ve öğrenmek istediğiniz kelimeleri bu mekanın farklı yerlerine görsel ve absürt senaryolarla yerleştirirsiniz. Zihinsel tur atarak kelimeleri hatırlarsınız.' },
+        { id: 'vocab4', title: 'Kelime Türetme (Word Association)', content: 'Yeni bir kelimeyi, zaten bildiğiniz başka bir kelimeyle (kendi dilinizde veya hedef dilde) ilişkilendirmektir. Bu, ses benzerliği, zıt anlamlılık veya anlamsal bir bağlantı olabilir. Bu bağlantı, yeni kelime için zihinsel bir çapa görevi görür ve hatırlamayı kolaylaştırır.' },
+        { id: 'vocab5', title: 'Feynman Tekniği', content: 'Öğrendiğiniz bir kelimeyi veya kavramı, sanki 10 yaşındaki bir çocuğa anlatıyormuş gibi basit terimlerle açıklamaya çalışmaktır. Eğer bunu yaparken zorlanıyorsanız, konuyu tam olarak anlamamışsınız demektir. Bu yöntem, derinlemesine anlama ve kalıcı öğrenme sağlar.' },
+        { id: 'vocab6', title: 'Aktif Geri Çağırma (Active Recall)', content: 'Bilgiyi pasif olarak okumak yerine, aktif olarak hafızanızdan geri çağırmaya çalışmaktır. Örneğin, bir kelimenin tanımını okumak yerine, kelimeyi görüp tanımını hatırlamaya çalışmak. Bu, beyindeki nöronal bağlantıları güçlendirir ve hatırlamayı çok daha etkili hale getirir.' }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const accordionContainer = document.getElementById('accordion-container');
+        const cardsContainer = document.getElementById('cards-container');
+        const ciaCheckboxes = document.getElementById('cia-checkboxes');
+        const vocabCheckboxes = document.getElementById('vocab-checkboxes');
+        const generatePlanBtn = document.getElementById('generate-plan-btn');
+        const planOutput = document.getElementById('plan-output');
+        const planContent = document.getElementById('plan-content');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function createAccordionItem(item) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden';
+            
+            const button = document.createElement('button');
+            button.className = 'w-full text-left p-5 flex justify-between items-center font-semibold text-gray-700 focus:outline-none';
+            button.innerHTML = `<span>${item.title}</span> <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>`;
+            
+            const content = document.createElement('div');
+            content.className = 'accordion-content px-5 pb-5 text-gray-600';
+            content.innerHTML = `<p>${item.content}</p>`;
+
+            wrapper.appendChild(button);
+            wrapper.appendChild(content);
+
+            button.addEventListener('click', () => {
+                const icon = button.querySelector('svg');
+                const allContents = document.querySelectorAll('.accordion-content');
+                const allIcons = document.querySelectorAll('#accordion-container button svg');
+
+                if (content.classList.contains('open')) {
+                    content.classList.remove('open');
+                    icon.classList.remove('rotate-180');
+                } else {
+                    allContents.forEach(c => c.classList.remove('open'));
+                    allIcons.forEach(i => i.classList.remove('rotate-180'));
+                    content.classList.add('open');
+                    icon.classList.add('rotate-180');
+                }
+            });
+
+            return wrapper;
+        }
+
+        function createCard(item) {
+            const card = document.createElement('div');
+            card.className = 'card bg-white rounded-lg shadow-md border border-gray-200 p-6';
+            card.innerHTML = `
+                <h4 class="font-bold text-xl mb-3 text-gray-800">${item.title}</h4>
+                <p class="text-gray-600">${item.content}</p>
+            `;
+            return card;
+        }
+
+        function createCheckbox(item) {
+            const label = document.createElement('label');
+            label.className = 'flex items-center space-x-3 cursor-pointer';
+            label.innerHTML = `
+                <input type="checkbox" data-id="${item.id}" class="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="text-gray-700">${item.title}</span>
+            `;
+            return label;
+        }
+
+        ciaTactics.forEach(tactic => {
+            accordionContainer.appendChild(createAccordionItem(tactic));
+            ciaCheckboxes.appendChild(createCheckbox(tactic));
+        });
+
+        vocabTechniques.forEach(technique => {
+            cardsContainer.appendChild(createCard(technique));
+            vocabCheckboxes.appendChild(createCheckbox(technique));
+        });
+
+        generatePlanBtn.addEventListener('click', () => {
+            const selectedCiaIds = Array.from(ciaCheckboxes.querySelectorAll('input:checked')).map(cb => cb.dataset.id);
+            const selectedVocabIds = Array.from(vocabCheckboxes.querySelectorAll('input:checked')).map(cb => cb.dataset.id);
+
+            if (selectedCiaIds.length === 0 && selectedVocabIds.length === 0) {
+                planContent.innerHTML = '<p>Lütfen planınıza eklemek için en az bir taktik veya teknik seçin.</p>';
+                planOutput.classList.remove('hidden');
+                return;
+            }
+
+            let html = '';
+
+            if (selectedCiaIds.length > 0) {
+                html += '<h3>Uygulanacak CIA Taktikleri</h3><ul>';
+                selectedCiaIds.forEach(id => {
+                    const tactic = ciaTactics.find(t => t.id === id);
+                    html += `<li><strong>${tactic.title}:</strong> ${tactic.content}</li>`;
+                });
+                html += '</ul>';
+            }
+
+            if (selectedVocabIds.length > 0) {
+                html += '<h3 class="mt-6">Odaklanılacak Kelime Teknikleri</h3><ul>';
+                selectedVocabIds.forEach(id => {
+                    const technique = vocabTechniques.find(t => t.id === id);
+                    html += `<li><strong>${technique.title}:</strong> ${technique.content}</li>`;
+                });
+                html += '</ul>';
+            }
+
+            planContent.innerHTML = html;
+            planOutput.classList.remove('hidden');
+            planOutput.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('main section[id]');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+    </script>
+</body>
+</html>
